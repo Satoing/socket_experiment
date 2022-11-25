@@ -38,11 +38,6 @@ int main() {
 
   sendto(s, MSG, sizeof(MSG), 0, (struct sockaddr*)&sin, sizeof(sin));
 
-  memset(&sin, 0, sizeof(sin));
-  sin.sin_family = AF_INET;
-  sin.sin_addr.s_addr = inet_addr(ip);
-  sin.sin_port = htons(port);
-  sin_len = sizeof(sin);
   int n = recvfrom(s, &now, sizeof(now), 0, (struct sockaddr*)&sin, &sin_len);
   if(n < 0) {
     printf("读取失败\n");

@@ -37,7 +37,6 @@ int main() {
   while(1) {
     memset(buf, 0, sizeof(buf));
     recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*)&cin, &cin_len);
-    printf("%s", buf);
 
     time(&now);
     now = htonl((unsigned long)(now+UNIXEPOCH));
