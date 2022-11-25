@@ -12,6 +12,11 @@ int connectTCP(char* ip, int port);
 int connectsock(char* ip, int port, const char* transport);
 void TCPchat(int s);
 
+void sendMsg();
+void recvMsg();
+void sendFile();
+void revcFile();
+
 int main(int argc, char* argv[]) {
   char* ip = "127.0.0.1";
   int port = 5000;
@@ -60,12 +65,12 @@ void TCPchat(int s) {
     // client1是先发送消息的一方
     if(strcmp(client, "1") == 0) {
       // 发送数据
-      memset(&msg, 0, BUFLEN);
+      memset(msg, 0, BUFLEN);
       printf("\n请输入你要发送的消息：");
       scanf("%s", msg);
       write(s, msg, strlen(msg));
-      printf("发送成功，等待对方回复...\n");
       if(strcmp(msg, "exit") == 0) break;  // 我方主动退出
+      printf("发送成功，等待对方回复...\n");
 
       // 接收数据
       memset(&msg, 0, BUFLEN);
@@ -77,7 +82,7 @@ void TCPchat(int s) {
     } 
     else if(strcmp(client, "2") == 0) {
       // 接收数据
-      memset(&msg, 0, BUFLEN);
+      memset(msg, 0, BUFLEN);
       read(s, msg, BUFLEN);
       if(strcmp(msg, "exit") != 0) printf("收到消息: %s\n", msg);
       else {
@@ -85,7 +90,7 @@ void TCPchat(int s) {
       }
 
       // 发送数据
-      memset(&msg, 0, BUFLEN);
+      memset(msg, 0, BUFLEN);
       printf("\n请输入你要发送的消息：");
       scanf("%s", msg);
       write(s, msg, strlen(msg));

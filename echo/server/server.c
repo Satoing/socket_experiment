@@ -48,7 +48,7 @@ client createSlaveSock(int s) {
 void TCPechoed(int ssock) {
   char buf[BUFLEN];
   while(strcmp(buf, "exit") != 0) {
-    memset(&buf, 0, BUFLEN);
+    memset(buf, 0, BUFLEN);
     if(read(ssock, buf, BUFLEN) < 0) printf("Read error.\n");
     else if(strcmp(buf, "exit") != 0) {
       printf("echo: %s\n", buf);

@@ -60,13 +60,13 @@ void TCPecho(int s) {
   char msg[BUFLEN];
   while(1) {
     // 发送数据
-    memset(&msg, 0, BUFLEN);
+    memset(msg, 0, BUFLEN);
     scanf("%s", msg);
     write(s, msg, strlen(msg));
     if(strcmp(msg, "exit") == 0) break;
 
     // 接收数据
-    memset(&msg, 0, BUFLEN);
+    memset(msg, 0, BUFLEN);
     if(read(s, msg, BUFLEN) < 0) printf("Read error.\n");
     else printf("echoed: %s\n", msg);
   }

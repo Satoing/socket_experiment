@@ -71,7 +71,7 @@ void TCPchated(group chat_two) {
   char buf[BUFLEN];
   while(strcmp(buf, "exit") != 0) {
     // client1向client2发送消息
-    memset(&buf, 0, BUFLEN);
+    memset(buf, 0, BUFLEN);
     read(chat_two.entity1.ssock, buf, BUFLEN);
     write(chat_two.entity2.ssock, buf, sizeof(buf));
     if(strcmp(buf, "exit") != 0) {
@@ -79,7 +79,7 @@ void TCPchated(group chat_two) {
     } else break;
     
     // client2向client1回复消息
-    memset(&buf, 0, BUFLEN);
+    memset(buf, 0, BUFLEN);
     read(chat_two.entity2.ssock, buf, BUFLEN);
     if(strcmp(buf, "exit") != 0) {
       printf("client2发送的消息: %s\n", buf);
